@@ -1,4 +1,8 @@
-##  A03
+##  A03 - Frequency Analysis
+### Landen Jones
+
+### Description: 
+Below there are two text files that are encrypted. The frequency.py file will give a frequency analysis of the code. 
 
 |   #   | Folder Link | Assignment Description |
 | :---: | ----------- | ---------------------- |
