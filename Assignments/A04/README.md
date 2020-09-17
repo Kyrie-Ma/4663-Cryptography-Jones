@@ -1,7 +1,7 @@
 ##  A04 - ADFGX Implementation
 ### Landen Jones
 ### Description: 
-Description of problem goes here.
+Program takes either some cipher text and transforms it into plain text or vice versa.  
 
 |   #   | Folder Link | Assignment Description |
 | :---: | ----------- | ---------------------- |
@@ -9,5 +9,5 @@ Description of problem goes here.
 
 Usage:
   must have all files in same directory/folder.
-  Template Run - >  python (file location) input="filename" keyword="keyword" output="filename"
+  Template Run - >  python (file location) input="filename" keyword="keyword" output="filename" task=either"encrypt" or "decrypt"
   Example Run - > python .\adfgx.py input="input.txt" keyword="potato" output="output.txt"
