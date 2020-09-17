@@ -1,16 +1,18 @@
-"""
-    This file implements a class that creates a Adfgx lookup table using a keyword
-    to build a polybuis square of format: 
-                      A D F G X 
-                    A s u p e r 
-                    D b a t z y 
-                    F c d f g h 
-                    G i k l m n 
-                    X o q v w x 
-
-    And then a dictionary lookup 
-"""
 import sys
+import pprint as pp
+import os
+from os import path
+
+def mykwargs(argv):
+    args = []
+    kargs = {}
+    for arg in argv:
+        if '=' in arg:
+            key,val = arg.split('=')
+            kargs[key] = val
+        else:
+            args.append(arg)
+    return args,kargs
 
 class AdfgxLookup:
     def __init__(self,k=None):
@@ -74,38 +76,6 @@ class AdfgxLookup:
         return self.polybius
 
     def build_polybius_lookup(self,key=None):
-        """ Builds a lookup dictionary so we can get the two letter pairs for each
-            polybius letter. 
-            Example:
-                key = superbatzy
-                polybius = superbatzycdfghiklmnoqvwx
-                lookup = 
-                {'a': 'DD',
-                'b': 'DA',
-                'c': 'FA',
-                'd': 'FD',
-                'e': 'AG',
-                'f': 'FF',
-                'g': 'FG',
-                'h': 'FX',
-                'i': 'GA',
-                'k': 'GD',
-                'l': 'GF',
-                'm': 'GG',
-                'n': 'GX',
-                'o': 'XA',
-                'p': 'AF',
-                'q': 'XD',
-                'r': 'AX',
-                's': 'AA',
-                't': 'DF',
-                'u': 'AD',
-                'v': 'XF',
-                'w': 'XG',
-                'x': 'XX',
-                'y': 'DX',
-                'z': 'DG'}
-        """
         if key != None:
             self.key = self.remove_duplicates(key)
 
@@ -137,21 +107,6 @@ class AdfgxLookup:
 
 
     def sanity_check(self):
-        """ This method lets you look at an actual "matrix" that you built using 
-            a keyword. 
-            Example: 
-                key = 'superbatzy'
-                output = 
-                      A D F G X 
-                    A s u p e r 
-                    D b a t z y 
-                    F c d f g h 
-                    G i k l m n 
-                    X o q v w x 
-
-            This is not what you would use to encrypt!! Its only a sanity check
-            meaning that it visualizes the lookup table just to see proof it's correct.
-        """
 
         if not self.key:
             print("Error: There is NO key defined to assist with building of the matrix")
@@ -180,39 +135,26 @@ class AdfgxLookup:
 
 
 if __name__=='__main__':
-    #     A D F G X
-    # A | p h q g m 
-    # D | e a y n o 
-    # F | f d x k r
-    # G | c v s z w 
-    # X | b u t i l
 
+    argv = sys.argv[1:]
+    args,kwargs = mykwargs(argv)
+    input_file = kwargs.get('input',None)
+    output_file = kwargs.get('output',None)
+    task = kwargs.get('task',None)
+    key = kwargs.get('key',None)
+    if input_file:
+        input_file = path.join(path.dirname(__file__), input_file)
+        with open(input_file) as f:
+            plaintext = f.read()
     # init and input my keyword
-    A = AdfgxLookup('superflazkitbond')
-
-    # build my lookup table 
-    lookup = A.build_polybius_lookup()
-
-    # print out my adfgx lookup table
-    pp.pprint(lookup)
-
-    # print out the actual matrix so I 
-    # know I'm not insane!
-    A.sanity_check()
-
-
-    B = AdfgxLookup('theattackisatdawn')
-
-    # build my lookup table 
-    lookup = B.build_polybius_lookup()
-
-    # print out my adfgx lookup table
-    pp.pprint(lookup)
-
-    # print out the actual matrix I 
-    # know I'm not insane!
-    B.sanity_check()
-
-
-    for c in 'theattackisatdawn':
-        print(lookup[c],end=' ')
+    if task == "encrypt":
+        A = AdfgxLookup(key)
+        
+        # build my lookup table 
+        lookup = A.build_polybius_lookup()
+        ALPHABET = [chr(x+97) for x in range(26)]
+        for c in plaintext:
+            if c in ALPHABET:
+                print(lookup[c],end=' ')
+    elif task == "decrypt":
+        pass
