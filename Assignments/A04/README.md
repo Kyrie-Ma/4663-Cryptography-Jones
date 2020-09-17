@@ -5,6 +5,4 @@ Description of problem goes here.
 
 |   #   | Folder Link | Assignment Description |
 | :---: | ----------- | ---------------------- |
-|1|<a href="https://github.com/LandenSJones/4663-Cryptography-Jones/blob/master/Assignments/A04/polybius.py">polybius.py</a>|Holder|
-|2|<a href="https://github.com/LandenSJones/4663-Cryptography-Jones/blob/master/Assignments/A04/adfgx.py">adfgx.py</a>|Holder|
-|3|<a href="https://github.com/LandenSJones/4663-Cryptography-Jones/blob/master/Assignments/A04/fractionate.py">fractionate.py</a>|Holder|
+|1|<a href="https://github.com/LandenSJones/4663-Cryptography-Jones/blob/master/Assignments/A04/adfgx.py">adfgx.py</a>|Holder|
