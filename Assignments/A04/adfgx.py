@@ -3,6 +3,7 @@ import pprint as pp
 import os
 from os import path
 
+
 def mykwargs(argv):
     args = []
     kargs = {}
@@ -12,23 +13,27 @@ def mykwargs(argv):
             kargs[key] = val
         else:
             args.append(arg)
-    return args,kargs
+    return args, kargs
+
 
 class AdfgxLookup:
-    def __init__(self,k=None):
+    def __init__(self, k=None):
+        # Gets rid of duplicate characters in key1
         self.key = self.remove_duplicates(k)
-
+        # Declares all letters in alphabet to check with later
         self.alphabet = [chr(x+97) for x in range(26)]
-        self.adfgx = ['A','D','F','G','X']
-        self.keylen = 0
+        # 
+        self.adfgx = ['A', 'D', 'F', 'G', 'X']
+        
+        self.keylen = 0     # Initialize length of key
 
-        if self.key:
+        if self.key:        # Changes key length if we have key
             self.keylen = len(self.key)
+                            
+        self.polybius = None    # 
+        self.lookup = None      # 
 
-        self.polybius = None
-        self.lookup = None
-
-    def remove_duplicates(self,key):
+    def remove_duplicates(self, key):
         """ Removes duplicate letters from a given key, since they
             will break the encryption.
 
@@ -39,12 +44,11 @@ class AdfgxLookup:
         """
         newkey = []             # create a list for letters
         for i in key:           # loop through key
-            if not i in newkey: # skip duplicates
+            if not i in newkey:  # skip duplicates
                 newkey.append(i)
         
         # create a string by joining the newkey list as a string
         return ''.join(str(x) for x in newkey)
-       
 
     def build_polybius_string(self,key=None):
         """Builds a string consisting of a keyword + the remaining
@@ -54,11 +58,9 @@ class AdfgxLookup:
                 polybius = 'superbatzycdfghiklmnoqvwx'
         """
         # no key passed in, used one from constructor
-        if key != None:
+        if key:
             self.key = self.remove_duplicates(key)
-
-        # NO key!
-        if not self.key:
+        else:
             print("Error: There is NO key defined to assist with building of the matrix")
             sys.exit(0)
 
@@ -134,27 +136,31 @@ class AdfgxLookup:
             sys.stdout.write("\n")
 
 
-if __name__=='__main__':
-
-    argv = sys.argv[1:]
-    args,kwargs = mykwargs(argv)
-    input_file = kwargs.get('input',None)
-    output_file = kwargs.get('output',None)
-    task = kwargs.get('task',None)
-    key = kwargs.get('key',None)
-    if input_file:
+if __name__ == '__main__':
+    argv = sys.argv[1:]  # Command Parameter arguments stored
+    args, kwargs = mykwargs(argv)     # Command parameters placed into a dictionary
+    input_file = kwargs.get('input', None)   # Gets inputfile
+    output_file = kwargs.get('output', None)  # Gets outputfile
+    task = kwargs.get('task',None)          # Encrypt or Decrypt
+    key1 = kwargs.get('key1',None)            # Gets First Key
+    key2 = kwargs.get('key2',None)            # Gets First Key
+    if input_file:  # Gets plain text from input file
         input_file = path.join(path.dirname(__file__), input_file)
         with open(input_file) as f:
             plaintext = f.read()
-    # init and input my keyword
+    else:
+        plaintext = "therewasnoplaintextspecified"
+        
     if task == "encrypt":
-        A = AdfgxLookup(key)
+        A = AdfgxLookup(key1)
         
         # build my lookup table 
         lookup = A.build_polybius_lookup()
+        print(A.polybius)
+        pp.pprint(lookup)
         ALPHABET = [chr(x+97) for x in range(26)]
+        ciphertext = ""
         for c in plaintext:
             if c in ALPHABET:
-                print(lookup[c],end=' ')
-    elif task == "decrypt":
-        pass
+                ciphertext += lookup[c]
+        print(ciphertext)
