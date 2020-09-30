@@ -2,9 +2,9 @@
 ### Landen Jones
 
 ### Description: 
-Below there are two text files that are encrypted. The frequency.py file will give a frequency analysis of the code. 
+Below there are two text files that are encrypted and their respective decrypted files. The frequency.py file will give a frequency analysis of the code.
 
-|   #   | Folder Link | Assignment Description |
+|   #   | File Link | File Description |
 | :---: | ----------- | ---------------------- |
 |1|<a href="https://github.com/LandenSJones/4663-Cryptography-Jones/blob/master/Assignments/A03/ciphertext1.txt">ciphertext1.txt</a>|First encrypted text        |
 |2|<a href="https://github.com/LandenSJones/4663-Cryptography-Jones/blob/master/Assignments/A03/ciphertext2.txt">ciphertext2.txt</a>|Second encrypted text         |
