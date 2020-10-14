@@ -127,7 +127,7 @@ class AdfgxLookup:
         sys.stdout.write('\n')
         for l in self.adfgx:
             sys.stdout.write(l+' ')
-            for ll in self.adfgx:
+            for l in self.adfgx:
                 i = (5 * row) + col
                 sys.stdout.write(self.polybius[i]+' ')
                 col += 1
