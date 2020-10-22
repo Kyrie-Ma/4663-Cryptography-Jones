@@ -1,7 +1,7 @@
 ## Assignment 7 - Finding Primes
 
 ### Certification
-#### 1.
+#### 1. Shor/Pocklington
 ### Compositeness
 #### 1. Fermat primality test
 ![Fermat](https://user-images.githubusercontent.com/59664899/96912101-6eeaca00-1467-11eb-813a-0ed94904fa54.PNG)
