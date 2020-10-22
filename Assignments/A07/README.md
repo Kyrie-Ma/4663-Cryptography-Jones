@@ -14,5 +14,9 @@
 ### Deterministic
 #### 1. AKS primality test
 ![AKS](https://user-images.githubusercontent.com/59664899/96911973-39de7780-1467-11eb-8d15-73a67de2e39c.PNG)
+#### In 2002, the first probably unconditional deterministic polynomial time test for primality was invented by Manindra Agrawal, Neeraj Kayal, and Nitin Saxena. The AKS primality test runs in Õ((log n)12) (improved to Õ((log n)7.5). in the published revision of their paper), which can be further reduced to Õ((log n)6) if the Sophie Germain conjecture is true. Subsequently, Lenstra and Pomerance presented a version of the test which runs in time Õ((log n)6) unconditionally.
 
 #### 2.
+
+Sources:
+###### 1. https://en.wikipedia.org/wiki/Primality_test#Fast_deterministic_tests
