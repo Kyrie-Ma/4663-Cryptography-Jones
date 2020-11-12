@@ -2,6 +2,7 @@
 
 ### Certification
 #### 1. Shor/Pocklington
+![ShorPocklington](https://user-images.githubusercontent.com/59664899/96922720-d3148a80-1475-11eb-9004-3091f4f628ba.PNG)
 ### Compositeness
 #### 1. Fermat primality test
 ![Fermat](https://user-images.githubusercontent.com/59664899/96912101-6eeaca00-1467-11eb-813a-0ed94904fa54.PNG)
