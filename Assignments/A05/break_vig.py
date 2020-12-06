@@ -149,11 +149,6 @@ def decrypt(ciphertext, key, plaintext):
 
 
 def infer_spaces(s):
-    """
-    Uses dynamic programming to infer the location 
-    of spaces in a string without spaces.
-    https://controlc.com/c1666a6b
-    """
     # Find the best match for the i first characters, assuming cost hasbeen built for the i-1 first characters.
     # Returns a pair (match_cost, match_length).
     def best_match(i):
