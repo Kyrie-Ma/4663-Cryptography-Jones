@@ -58,43 +58,27 @@ def getFactors(n, primes):
     return factorList
 
 if __name__=='__main__':
-    required_params = 1 # adjust accordingly
     # get processed command line arguments 
     _,params = mykwargs(sys.argv[1:])
-
-    # print usage if not called correctly
-    if len(params) < required_params:
-        usage()
-
-    infile = params.get('input',None)
+    infile = params.get('input', None)
     if not infile:
-      usage()
-    
+      usage()    
     numList = []
     primes = []
 
     with open(infile) as f:
       for line in f: # read rest of lines
           numList.append([int(x) for x in line.split()])
-
-    # 10000 covers most prime numbers in file w/out breaking replit
     primes = eratosthenes(10000)
     factors = []
-
-    # numList is a list of lists of integers with only one variable in the list
     for i in range(0,len(numList)):
       for j in numList[i]:
-        # check for 0
         if (j == 0):
             print("Number", i+1, ": ", numList[i][0], " - Factors: 0")
         else:
-            # factors will be a list of all factors for a number j
             factors = getFactors(j, primes)
-
-            # checking for numbers too big for eratosthenes function
             if (len(factors) == 0):
               primes.append(j)
-
             if j not in primes:
               print("Number", i+1, ": ", numList[i][0], " - Factors:", factors)
             else:
