@@ -8,13 +8,11 @@ import os
 from frequency import Frequency
 from math import log
 
-# Build a cost dictionary, assuming Zipf's law
-# cost = -math.log(probability)
 freqWords = open("Assignments/A05/words-by-frequency.txt").read().split()
 wordcost = dict((k, log((i+1)*log(len(freqWords)))) for i,k in enumerate(freqWords))
 maxword = max(len(x) for x in freqWords)
 
-
+# Given
 def mykwargs(argv):
     '''
     Processes argv list into plain args (list) and kwargs (dict).
@@ -31,7 +29,7 @@ def mykwargs(argv):
             args.append(arg)
     return args,kargs
 
-
+# Given
 def usage(message=None):
     '''
     Display descriptive error messages if the keywords from .replit are incorrect
@@ -69,6 +67,7 @@ def incidence_of_coincidence(sequence):
 # https://inventwithpython.com/hacking/chapter21.html
 # https://github.com/drewp41/Vigenere-Cipher-Breaker
 # https://gist.github.com/akonradi/a9637c17fc6452d868ee
+# These sites for reference for the following two functions
 def get_key_length(ciphertext):
     ic_table=[]
     for guess_len in range(16):
@@ -121,15 +120,15 @@ def get_key(keylength, check_Attempt,words):
 
 def check_english(message, words):
     '''
-    Check to see if the plaintext received from the potential key is a valid, english statement which could be the encrypted message. Return the probability ratio of likliness for English.
+    We take our words in our initial file to determine if what we have decrypted is in fact English.
     '''
     tokens = message.split()
     score = 0
     for tok in tokens:
         if tok.upper() in words:
             score += 1
-
     return score / len(tokens)
+    # Score determines theh correct conclusion
 
 
 def decrypt(ciphertext, key, plaintext):
