@@ -17,10 +17,10 @@ for i in range(ns):
 print(subs)
 
 # here is where you would put your plain text
-plaintext = "".lower()
+plaintext = ""
 
 # here is where you would write to the out file
-f = open("ciphertext.txt","w")
+f = open("Assignments/A03/ciphertext1.txt","w")
 
 # performs the substitution
 for p in plaintext:
